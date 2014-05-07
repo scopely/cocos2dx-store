@@ -42,7 +42,7 @@ namespace soomla {
         virtual void onItemPurchased(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
         virtual void onItemPurchaseStarted(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
         virtual void onMarketPurchaseCancelled(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
-        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::CCString *receiptUrl) = 0;
+        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::CCString *receiptUrl, cocos2d::CCString *transactionId) = 0;
         virtual void onMarketPurchaseStarted(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
         virtual void onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
         virtual void onRestoreTransactionsFinished(bool success) = 0;

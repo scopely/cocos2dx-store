@@ -208,11 +208,12 @@ namespace soomla {
                 return;
             }
             CCString *receiptUrl = (CCString *)(parameters->objectForKey("receiptUrl"));
+            CCString *transactionId = (CCString *)(parameters->objectForKey("transactionId"));
             CC_ASSERT(purchasableVirtualItem);
 			CCSetIterator i;
 			for(i = mEventHandlers.begin(); i != mEventHandlers.end(); i++) {
 				CCEventHandler *h = dynamic_cast<CCEventHandler *>(*i);
-                h->onMarketPurchase(purchasableVirtualItem, receiptUrl);
+                h->onMarketPurchase(purchasableVirtualItem, receiptUrl, transactionId);
 			}
         }
         else if (methodName->compare("CCEventHandler::onMarketPurchaseStarted") == 0) {

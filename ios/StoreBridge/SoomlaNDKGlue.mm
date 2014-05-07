@@ -254,10 +254,12 @@ static NSString* TAG = @"SOOMLA SoomlaNDKGlue";
     }
     else if ([notification.name isEqualToString:EVENT_MARKET_PURCHASED]) {
         PurchasableVirtualItem* pvi = (PurchasableVirtualItem*)[notification.userInfo objectForKey:DICT_ELEMENT_PURCHASABLE];
+        NSString *transactionId = (NSString *)[notification.userInfo objectForKey:DICT_ELEMENT_TRANSACTION_ID];
         NSURL *url = [notification.userInfo objectForKey:DICT_ELEMENT_RECEIPT];
         [parameters setObject:@"CCEventHandler::onMarketPurchase" forKey:@"method"];
         [parameters setObject:[pvi itemId] forKey:@"itemId"];
         [parameters setObject:[url absoluteString] forKey:@"receiptUrl"];
+        [parameters setObject:transactionId forKey:@"transactionId"];
     }
     else if ([notification.name isEqualToString:EVENT_MARKET_PURCHASE_STARTED]) {
         PurchasableVirtualItem* pvi = (PurchasableVirtualItem*)[notification.userInfo objectForKey:DICT_ELEMENT_PURCHASABLE];
