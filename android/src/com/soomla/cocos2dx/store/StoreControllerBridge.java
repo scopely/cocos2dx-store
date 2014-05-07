@@ -10,6 +10,8 @@ import com.soomla.store.domain.PurchasableVirtualItem;
 import com.soomla.store.exceptions.VirtualItemNotFoundException;
 import com.soomla.store.purchaseTypes.PurchaseWithMarket;
 
+import com.soomla.store.billing.google.GooglePlayIabService;
+
 /**
  * This bridge is used to let cocos2dx functions perform actions on StoreController (through JNI).
  *
@@ -31,6 +33,8 @@ public class StoreControllerBridge {
 
     public static void initialize(String customSecret) {
         StoreUtils.LogDebug("SOOMLA", "initialize is called from java!");
+        StoreConfig.InAppBillingService = new GooglePlayIabService();
+        
         initializeEventHandler();
         StoreController.getInstance().initialize(mStoreAssets, mPublicKey, customSecret);
     }
