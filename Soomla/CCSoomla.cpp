@@ -234,7 +234,7 @@ namespace soomla {
         else if (methodName->compare("CCEventHandler::onMarketItemsRefreshed") == 0) {
             CCArray *marketItems = (CCArray *)(parameters->objectForKey("marketItems"));
 
-            CCSoomlaError *soomlaError;
+            CCSoomlaError *soomlaError = NULL;
             CCDictionary *marketItem;
             for (unsigned int i = 0; i < marketItems->count(); i++) {
                 marketItem = dynamic_cast<CCDictionary *>(marketItems->objectAtIndex(i));
@@ -243,13 +243,15 @@ namespace soomla {
                 CCDouble *marketPrice = dynamic_cast<CCDouble *>(marketItem->objectForKey("market_price"));
                 CCString *marketTitle = dynamic_cast<CCString *>(marketItem->objectForKey("market_title"));
                 CCString *marketDescription = dynamic_cast<CCString *>(marketItem->objectForKey("market_desc"));
-
+                CCString *marketPriceWithCurrencySymbol = dynamic_cast<CCString *>(marketItem->objectForKey("market_price_with_currency_symbol"));
+                                
                 CCPurchasableVirtualItem *pvi = CCStoreInfo::sharedStoreInfo()->getPurchasableItemWithProductId(
                         productId->getCString(), &soomlaError);
                 if (soomlaError) {
                     CCStoreUtils::logException("CCEventHandler::onMarketItemsRefreshed", soomlaError);
                     return;
                 }
+                
                 CC_ASSERT(pvi);
 
                 CCPurchaseWithMarket *purchaseWithMarket = dynamic_cast<CCPurchaseWithMarket *>(pvi->getPurchaseType());
@@ -258,6 +260,7 @@ namespace soomla {
                 mi->setMarketPrice(marketPrice);
                 mi->setMarketTitle(marketTitle);
                 mi->setMarketDescription(marketDescription);
+                mi->setMarketPriceWithCurrencySymbol(marketPriceWithCurrencySymbol);
             }
 
             CCSetIterator i;

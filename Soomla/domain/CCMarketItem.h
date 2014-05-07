@@ -24,13 +24,14 @@ namespace soomla {
         CC_SYNTHESIZE_RETAIN(cocos2d::CCDouble *, mMarketPrice, MarketPrice);
         CC_SYNTHESIZE_RETAIN(cocos2d::CCString *, mMarketTitle, MarketTitle);
         CC_SYNTHESIZE_RETAIN(cocos2d::CCString *, mMarketDescription, MarketDescription);
+        CC_SYNTHESIZE_RETAIN(cocos2d::CCString *, mMarketPriceWithCurrencySymbol, MarketPriceWithCurrencySymbol);
     public:
         enum Consumable {
             NONCONSUMABLE,
             CONSUMABLE,
             SUBSCRIPTION,
         };
-        CCMarketItem(): mProductId(NULL), mConsumable(NULL), mPrice(NULL), mMarketPrice(NULL), mMarketTitle(NULL), mMarketDescription(NULL) {};
+        CCMarketItem(): mProductId(NULL), mConsumable(NULL), mPrice(NULL), mMarketPrice(NULL), mMarketTitle(NULL), mMarketDescription(NULL), mMarketPriceWithCurrencySymbol(NULL) {};
 
 		/**
 		   Create a CCMarketItem.

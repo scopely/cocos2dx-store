@@ -144,7 +144,7 @@ namespace soomla {
         params->setObject(CCString::create("CCStoreInfo::getPurchasableItemWithProductId"), "method");
         params->setObject(CCString::create(productId), "productId");
         CCDictionary *retParams = (CCDictionary *) CCSoomlaNdkBridge::callNative(params, soomlaError);
-        if (!soomlaError) {
+        if (!*soomlaError) {
             SAFE_CREATE(CCPurchasableVirtualItem *, ret, retParams);
             return ret;
         } else {
@@ -157,7 +157,7 @@ namespace soomla {
         params->setObject(CCString::create("CCStoreInfo::getCategoryForVirtualGood"), "method");
         params->setObject(CCString::create(goodItemId), "goodItemId");
         CCDictionary *retParams = (CCDictionary *) CCSoomlaNdkBridge::callNative(params, soomlaError);
-        if (!soomlaError) {
+        if (!*soomlaError) {
             SAFE_CREATE(CCVirtualCategory *, ret, retParams);
             return ret;
         } else {
