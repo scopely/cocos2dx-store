@@ -33,6 +33,11 @@ namespace soomla {
 
     char const* JSON_MARKETITEM_CONSUMABLE    = "consumable";
     char const* JSON_MARKETITEM_PRICE         = "price";
+    char const* JSON_MARKETITEM_MARKET_PRICE  = "market_price";
+    char const* JSON_MARKETITEM_MARKET_TITLE  = "market_title";
+    char const* JSON_MARKETITEM_MARKET_DESC   = "market_desc";
+    char const* JSON_MARKETITEM_MARKET_PRICE_WITH_CURRENCY_SYMBOL   = "market_price_with_currency_symbol";
+    
     
     char const* JSON_EQUIPPABLE_EQUIPPING     = "equipping";
     

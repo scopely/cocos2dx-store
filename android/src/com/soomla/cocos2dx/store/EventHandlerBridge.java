@@ -237,6 +237,7 @@ public class EventHandlerBridge {
                     parameters.put("method", "CCEventHandler::onMarketPurchase");
                     parameters.put("itemId", marketPurchaseEvent.getPurchasableVirtualItem().getItemId());
                     parameters.put("receiptUrl", marketPurchaseEvent.getPurchasableVirtualItem().getItemId());
+                    parameters.put("transactionId", marketPurchaseEvent.getOrderId());
                     SoomlaNDKGlue.sendMessageWithParameters(parameters);
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);

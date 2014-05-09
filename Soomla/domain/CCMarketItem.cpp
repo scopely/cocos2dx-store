@@ -48,6 +48,10 @@ namespace soomla {
 
         fillConsumableFromDict(dict);
         fillPriceFromDict(dict);
+        fillMarketPriceFromDict(dict);
+        fillMarketTitleFromDict(dict);
+        fillMarketDescriptionFromDict(dict);
+        fillMarketPriceWithCurrencySymbolFromDict(dict);
 
         return true;
     }

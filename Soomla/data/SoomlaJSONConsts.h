@@ -34,6 +34,10 @@ namespace soomla {
 
     extern char const* JSON_MARKETITEM_CONSUMABLE;
     extern char const* JSON_MARKETITEM_PRICE;
+    extern char const* JSON_MARKETITEM_MARKET_PRICE;
+    extern char const* JSON_MARKETITEM_MARKET_TITLE;
+    extern char const* JSON_MARKETITEM_MARKET_DESC;
+    extern char const* JSON_MARKETITEM_MARKET_PRICE_WITH_CURRENCY_SYMBOL;
     
     extern char const* JSON_EQUIPPABLE_EQUIPPING;
     
