@@ -40,7 +40,12 @@ public class StoreControllerBridge {
     }
 
     public static void initializeEventHandler() {
-        mEventHandler = new EventHandlerBridge(mGLView);
+    	StoreUtils.LogDebug("SOOMLA", "initializeEventHandler");
+    	if (mEventHandler == null) {
+    		mEventHandler = new EventHandlerBridge(mGLView);
+    	} else {
+    		mEventHandler.setGLThread(mGLView);
+    	}
     }
 
     public static void startIabServiceInBg() {

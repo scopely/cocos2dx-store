@@ -1,6 +1,7 @@
 package com.soomla.cocos2dx.store;
 
 import android.opengl.GLSurfaceView;
+
 import com.soomla.store.BusProvider;
 import com.soomla.store.domain.MarketItem;
 import com.soomla.store.events.*;
@@ -21,7 +22,11 @@ public class EventHandlerBridge {
 
         BusProvider.getInstance().register(this);
     }
-
+    
+    public void setGLThread(GLSurfaceView glThread) {
+    	mGLThread = glThread;
+    }
+    
     @Subscribe
     public void onBillingNotSupported(BillingNotSupportedEvent billingNotSupportedEvent) {
         mGLThread.queueEvent(new Runnable() {
