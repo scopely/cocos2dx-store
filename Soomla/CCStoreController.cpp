@@ -174,6 +174,15 @@ namespace soomla {
         params->setObject(CCString::create("CCStoreController::refreshMarketItemsDetails"), "method");
         CCSoomlaNdkBridge::callNative(params, soomlaError);
     }
+    
+    void CCStoreController::setCustomReceiptVerificationClassName(CCString *className)
+    {
+        CCDictionary *params = CCDictionary::create();
+        params->setObject(CCString::create("CCStoreController::setCustomReceiptVerificationClassName"), "method");
+        params->setObject(className, "customReceiptVerificationClassName");
+        CCSoomlaNdkBridge::callNative(params, NULL);
+    }
+    
 #endif
 	
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

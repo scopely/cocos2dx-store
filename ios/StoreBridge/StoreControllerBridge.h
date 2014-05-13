@@ -31,6 +31,7 @@ public:
     static void setSSV(bool ssv);
     static void refreshMarketItemsDetails();
     static void refreshInventory();
+    static void setCustomReceiptVerificationClassName(NSString *className);
 };
 
 #endif /* defined(__StoreControllerBridge__) */

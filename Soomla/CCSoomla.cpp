@@ -272,6 +272,8 @@ namespace soomla {
         }
         else if (methodName->compare("CCEventHandler::onMarketPurchaseVerification") == 0) {
             CCString *itemId = (CCString *)(parameters->objectForKey("itemId"));
+            CCString *transactionId = (CCString *)(parameters->objectForKey("transactionId"));
+
             CCSoomlaError *soomlaError = NULL;
             CCPurchasableVirtualItem *purchasableVirtualItem =
                     dynamic_cast<CCPurchasableVirtualItem *>(CCStoreInfo::sharedStoreInfo()->getItemByItemId(itemId->getCString(), &soomlaError));
@@ -283,7 +285,7 @@ namespace soomla {
             CCSetIterator i;
             for(i = mEventHandlers.begin(); i != mEventHandlers.end(); i++) {
                 CCEventHandler *h = dynamic_cast<CCEventHandler *>(*i);
-                h->onMarketPurchaseVerification(purchasableVirtualItem);
+                h->onMarketPurchaseVerification(purchasableVirtualItem, transactionId);
             }
         }
         else if (methodName->compare("CCEventHandler::onRestoreTransactionsFinished") == 0) {

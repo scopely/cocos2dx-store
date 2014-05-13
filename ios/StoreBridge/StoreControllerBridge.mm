@@ -74,3 +74,7 @@ void StoreControllerBridge::setSSV(bool ssv) {
     LogDebug(@"SOOMLA StoreControllerBridge", ([NSString stringWithFormat:@"Setting iOS SSV to: %@", ssv?@"true":@"false"]));
     VERIFY_PURCHASES = ssv;
 }
+
+void StoreControllerBridge::setCustomReceiptVerificationClassName(NSString *className) {
+    [StoreController getInstance].customReceiptVerificationClassName = className;
+}

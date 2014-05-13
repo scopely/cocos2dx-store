@@ -61,6 +61,8 @@ namespace soomla {
 		*/		
         bool transactionsAlreadyRestored();
         void refreshMarketItemsDetails(CCSoomlaError **soomlaError);
+        
+        void setCustomReceiptVerificationClassName(cocos2d::CCString *className);
 #endif
 		
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

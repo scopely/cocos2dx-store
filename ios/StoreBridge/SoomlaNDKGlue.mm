@@ -21,6 +21,7 @@
 #import "StoreUtils.h"
 #include "jansson.h"
 #import "MarketItem.h"
+#import <StoreKit/StoreKit.h>
 
 static EventDispatcherBridge *eventDispatcherBridge = [EventDispatcherBridge sharedInstance];
 
@@ -67,6 +68,10 @@ static NSString* TAG = @"SOOMLA SoomlaNDKGlue";
         else if ([methodName isEqualToString:@"CCStoreController::setSSV"]) {
             bool ssv = [(NSNumber*)[parameters objectForKey:@"ssv"] boolValue];
             StoreControllerBridge::setSSV(ssv);
+        }
+        else if ([methodName isEqualToString:@"CCStoreController::setCustomReceiptVerificationClassName"]) {
+            NSString *className = (NSString*)[parameters objectForKey:@"customReceiptVerificationClassName"];
+            StoreControllerBridge::setCustomReceiptVerificationClassName(className);
         }
         else if ([methodName isEqualToString:@"CCStoreController::refreshMarketItemsDetails"]) {
             StoreControllerBridge::refreshMarketItemsDetails();
@@ -277,8 +282,10 @@ static NSString* TAG = @"SOOMLA SoomlaNDKGlue";
     }
     else if ([notification.name isEqualToString:EVENT_MARKET_PURCHASE_VERIF]) {
         PurchasableVirtualItem* pvi = (PurchasableVirtualItem*)[notification.userInfo objectForKey:DICT_ELEMENT_PURCHASABLE];
+        SKPaymentTransaction *transcation = (SKPaymentTransaction *)[notification.userInfo objectForKey:DICT_ELEMENT_TRANSACTION];
         [parameters setObject:@"CCEventHandler::onMarketPurchaseVerification" forKey:@"method"];
         [parameters setObject:[pvi itemId] forKey:@"itemId"];
+        [parameters setObject:transcation.transactionIdentifier forKey:@"transactionId"];
     }
     else if ([notification.name isEqualToString:EVENT_RESTORE_TRANSACTIONS_FINISHED]) {
         BOOL success = [(NSNumber*)[notification.userInfo objectForKey:DICT_ELEMENT_SUCCESS] boolValue];
