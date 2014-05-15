@@ -171,6 +171,9 @@ public class SoomlaNDKGlue {
                     JSONArray retValue = StoreInfoBridge.getVirtualCategories();
                     retParams.put("return", retValue);
                 } else if (methodName.equals("CCStoreController::setSSV")) {
+                } else if (methodName.equals("CCStoreController::setPayloadGeneratorClass")) {
+                	String payloadGeneratorClass = params.getString("payloadGeneratorClass");
+                	StoreControllerBridge.setPayloadGeneratorClass(payloadGeneratorClass);
                 } else {
                     throw new UnsupportedOperationException(methodName);
                 }

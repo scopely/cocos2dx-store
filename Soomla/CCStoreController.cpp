@@ -197,5 +197,12 @@ namespace soomla {
         params->setObject(CCString::create("CCStoreController::stopIabServiceInBg"), "method");
         CCSoomlaNdkBridge::callNative(params, NULL);
     }
+
+    void CCStoreController::setPayloadGeneratorClass(CCString *payloadGeneratorClass) {
+    	CCDictionary *params = CCDictionary::create();
+    	params->setObject(CCString::create("CCStoreController::setPayloadGeneratorClass"), "method");
+    	params->setObject(payloadGeneratorClass, "payloadGeneratorClass");
+    	CCSoomlaNdkBridge::callNative(params, NULL);
+    }
 #endif
 }

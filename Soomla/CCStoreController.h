@@ -68,6 +68,7 @@ namespace soomla {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		void startIabServiceInBg();
 		void stopIabServiceInBg();
+		void setPayloadGeneratorClass(cocos2d::CCString *payloadGeneratorClass);
 #endif
     };
 };
