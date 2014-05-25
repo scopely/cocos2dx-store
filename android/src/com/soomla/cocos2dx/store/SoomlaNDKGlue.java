@@ -2,6 +2,7 @@ package com.soomla.cocos2dx.store;
 
 import android.util.Log;
 import com.soomla.store.StoreUtils;
+import com.soomla.store.StoreConfig;
 import com.soomla.store.exceptions.InsufficientFundsException;
 import com.soomla.store.exceptions.NotEnoughGoodsException;
 import com.soomla.store.exceptions.VirtualItemNotFoundException;
@@ -171,9 +172,10 @@ public class SoomlaNDKGlue {
                     JSONArray retValue = StoreInfoBridge.getVirtualCategories();
                     retParams.put("return", retValue);
                 } else if (methodName.equals("CCStoreController::setSSV")) {
-                } else if (methodName.equals("CCStoreController::setPayloadGeneratorClass")) {
-                	String payloadGeneratorClass = params.getString("payloadGeneratorClass");
-                	StoreControllerBridge.setPayloadGeneratorClass(payloadGeneratorClass);
+                } else if (methodName.equals("CCStoreController::setGooglePlayReceiptVerificationClassName")) {
+                	// TODO check that this is for the right store
+                	String receiptValidatorClass = params.getString("googlePlayReceiptVerificationClass");
+                	StoreControllerBridge.setReceiptValidatorClass(receiptValidatorClass);
                 } else {
                     throw new UnsupportedOperationException(methodName);
                 }

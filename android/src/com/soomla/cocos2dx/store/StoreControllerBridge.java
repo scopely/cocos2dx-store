@@ -7,7 +7,7 @@ import com.soomla.store.StoreController;
 import com.soomla.store.StoreUtils;
 import com.soomla.store.data.StoreInfo;
 import com.soomla.store.domain.PurchasableVirtualItem;
-import com.soomla.store.util.DeveloperPayloadGenerator;
+import com.soomla.store.util.ReceiptValidator;
 
 import com.soomla.store.exceptions.VirtualItemNotFoundException;
 import com.soomla.store.purchaseTypes.PurchaseWithMarket;
@@ -65,9 +65,9 @@ public class StoreControllerBridge {
         PurchasableVirtualItem pvi = StoreInfo.getPurchasableItem(productId);
         if(pvi.getPurchaseType() instanceof PurchaseWithMarket) {
         	String payload;
-        	if (StoreConfig.PAYLOAD_GENERATOR != null) {
+        	if (StoreConfig.RECEIPT_VALIDATOR != null) {
         		try {
-        			DeveloperPayloadGenerator g = (DeveloperPayloadGenerator)Class.forName(StoreConfig.PAYLOAD_GENERATOR).newInstance();
+        			ReceiptValidator g = (ReceiptValidator)Class.forName(StoreConfig.RECEIPT_VALIDATOR).newInstance();
         			payload = g.generatePayloadForSku(productId);
         			
         			StoreUtils.LogDebug("SOOMLA", "Generated developer payload:" + payload);    
@@ -107,9 +107,9 @@ public class StoreControllerBridge {
         StoreConfig.SOOM_SEC = soomSec;
     }
     
-    public static void setPayloadGeneratorClass(String payloadGenerator) {
-        StoreUtils.LogDebug("SOOMLA", "setPayloadGeneratorClass is called from java!");
-        StoreConfig.PAYLOAD_GENERATOR = payloadGenerator;
+    public static void setReceiptValidatorClass(String receiptValidatorClass) {
+        StoreUtils.LogDebug("SOOMLA", "setReceiptValidatorClass is called from java!");
+        StoreConfig.RECEIPT_VALIDATOR = receiptValidatorClass;
     }
 
     public static void setAndroidPublicKey(String publicKey) {

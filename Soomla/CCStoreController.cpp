@@ -198,10 +198,17 @@ namespace soomla {
         CCSoomlaNdkBridge::callNative(params, NULL);
     }
 
-    void CCStoreController::setPayloadGeneratorClass(CCString *payloadGeneratorClass) {
+    void CCStoreController::setGooglePlayReceiptVerificationClassName(CCString *payloadGeneratorClass) {
     	CCDictionary *params = CCDictionary::create();
-    	params->setObject(CCString::create("CCStoreController::setPayloadGeneratorClass"), "method");
-    	params->setObject(payloadGeneratorClass, "payloadGeneratorClass");
+    	params->setObject(CCString::create("CCStoreController::setGooglePlayReceiptVerificationClassName"), "method");
+    	params->setObject(payloadGeneratorClass, "googlePlayReceiptVerificationClass");
+    	CCSoomlaNdkBridge::callNative(params, NULL);
+    }
+    
+    void CCStoreController::setAmazonReceiptVerificationClassName(CCString *payloadGeneratorClass) {
+    	CCDictionary *params = CCDictionary::create();
+    	params->setObject(CCString::create("CCStoreController::setAmazonReceiptVerificationClassName"), "method");
+    	params->setObject(payloadGeneratorClass, "amazonReceiptVerificationClass");
     	CCSoomlaNdkBridge::callNative(params, NULL);
     }
 #endif

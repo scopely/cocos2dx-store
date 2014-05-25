@@ -252,6 +252,24 @@ public class EventHandlerBridge {
     }
 
     @Subscribe
+    public void onMarketPurchaseVerification(final MarketPurchaseVerificationEvent marketPurchaseVerificationEvent) {
+        mGLThread.queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject parameters = new JSONObject();
+                    parameters.put("method", "CCEventHandler::onMarketPurchaseVerification");
+                    parameters.put("itemId", marketPurchaseVerificationEvent.getPurchasableVirtualItem().getItemId());
+                    parameters.put("transactionId", marketPurchaseVerificationEvent.getOrderId());
+                    SoomlaNDKGlue.sendMessageWithParameters(parameters);
+                } catch (JSONException e) {
+                    throw new IllegalStateException(e);
+                }
+            }
+        });
+    }
+    
+    @Subscribe
     public void onMarketPurchaseStarted(final MarketPurchaseStartedEvent marketPurchaseStartedEvent) {
         mGLThread.queueEvent(new Runnable() {
             @Override
