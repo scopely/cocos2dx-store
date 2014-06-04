@@ -14,6 +14,11 @@ namespace soomla {
     static CCStoreInventory *s_SharedStoreInventory = NULL;
 
     CCStoreInventory *CCStoreInventory::sharedStoreInventory() {
+        if (!s_SharedStoreInventory) {
+          s_SharedStoreInventory = new CCStoreInventory();
+          s_SharedStoreInventory->init();
+        }
+        
         return s_SharedStoreInventory;
     }
 

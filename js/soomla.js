@@ -424,10 +424,11 @@ Soomla = new function () {
       }
       else if (methodName == "CCEventHandler::onMarketPurchase") {
         var purchasableVirtualItem = Soomla.storeInfo.getItemByItemId(parameters.itemId);
-        var receiptUrl = parameters.receiptUrl;
+        var token = parameters.token;
+        var payload = parameters.payload;
         _.forEach(Soomla.eventHandlers, function (eventHandler) {
           if (eventHandler.onMarketPurchase) {
-            eventHandler.onMarketPurchase(purchasableVirtualItem, receiptUrl);
+            eventHandler.onMarketPurchase(purchasableVirtualItem, token, payload);
           }
         });
       }
@@ -594,10 +595,11 @@ Soomla = new function () {
 
       return true;
     },
-    buyMarketItem: function(productId) {
+    buyMarketItem: function(productId, payload) {
       callNative({
         method: "CCStoreController::buyMarketItem",
-        productId: productId
+        productId: productId,
+        payload: payload
       });
     },
     restoreTransactions: function() {

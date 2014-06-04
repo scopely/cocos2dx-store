@@ -7,6 +7,13 @@
 
 USING_NS_CC;
 
+#define LOG_JSON 0
+
+#if (LOG_JSON == 1)
+#define TAG "JSON"
+#include "CCStoreUtils.h"
+#endif
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     #include "../cocos2dx/platform/android/jni/JniHelper.h"
     #include <jni.h>
@@ -63,6 +70,12 @@ namespace soomla {
 
             json_t *toBeSentJson = CCSoomlaJsonHelper::getJsonFromCCObject(methodParams);
             json_t *retJsonParams = NULL;
+
+#if (LOG_JSON == 1)
+            CCStoreUtils::logDebug(TAG, CCString::createWithFormat(
+                    "to native JSON: %s", json_dumps(toBeSentJson, JSON_COMPACT | JSON_ENSURE_ASCII))->getCString());
+#endif
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             JniMethodInfo t;
 
@@ -98,6 +111,11 @@ namespace soomla {
             }
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
             retJsonParams = soomla::CCSoomlaNdkBridgeIos::receiveCppMessage(toBeSentJson);
+#endif
+
+#if (LOG_JSON == 1)
+            CCStoreUtils::logDebug(TAG, CCString::createWithFormat(
+                    "from native JSON: %s", json_dumps(retJsonParams, JSON_COMPACT | JSON_ENSURE_ASCII))->getCString());
 #endif
 
             json_decref(toBeSentJson);

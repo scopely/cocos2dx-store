@@ -1,6 +1,5 @@
+.DS_Store
 .idea
-android/bin/
-android/gen/
 local.properties
 *.iml
 TAGS
