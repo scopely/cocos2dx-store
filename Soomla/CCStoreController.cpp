@@ -149,8 +149,8 @@ namespace soomla {
     void CCStoreController::setupSoomSec() {
         CC_ASSERT(mSoomSec);
         {
-            __Dictionary *params = __Dictionary::create();
-            params->setObject(__String::create("CCStoreController::setSoomSec"), "method");
+            CCDictionary *params = CCDictionary::create();
+            params->setObject(CCString::create("CCStoreController::setSoomSec"), "method");
             params->setObject(mSoomSec, "soomSec");
             CCSoomlaNdkBridge::callNative(params, NULL);
         }
@@ -172,8 +172,8 @@ namespace soomla {
     }
 
     void CCStoreController::refreshInventory() {
-        __Dictionary *params = __Dictionary::create();
-        params->setObject(__String::create("CCStoreController::refreshInventory"), "method");
+        CCDictionary *params = CCDictionary::create();
+        params->setObject(CCString::create("CCStoreController::refreshInventory"), "method");
         CCSoomlaNdkBridge::callNative(params, NULL);
     }
 
@@ -187,8 +187,8 @@ namespace soomla {
     }
 
     void CCStoreController::refreshMarketItemsDetails(CCSoomlaError **soomlaError) {
-        __Dictionary *params = __Dictionary::create();
-        params->setObject(__String::create("CCStoreController::refreshMarketItemsDetails"), "method");
+        CCDictionary *params = CCDictionary::create();
+        params->setObject(CCString::create("CCStoreController::refreshMarketItemsDetails"), "method");
         CCSoomlaNdkBridge::callNative(params, soomlaError);
     }
     

@@ -34,8 +34,6 @@ public class StoreControllerBridge {
 
     public static void initialize(String customSecret) {
         StoreUtils.LogDebug("SOOMLA", "initialize is called from java!");
-        StoreConfig.InAppBillingService = new GooglePlayIabService();
-        
         initializeEventHandler();
         StoreController.getInstance().initialize(mStoreAssets, customSecret);
         if (StoreController.getInstance().getInAppBillingService() instanceof GooglePlayIabService) {
@@ -66,7 +64,6 @@ public class StoreControllerBridge {
         StoreUtils.LogDebug("SOOMLA", "buyWithMarket is called from java with productId: " + productId + "!");
         PurchasableVirtualItem pvi = StoreInfo.getPurchasableItem(productId);
         if(pvi.getPurchaseType() instanceof PurchaseWithMarket) {
-        	String payload;
         	if (StoreConfig.RECEIPT_VALIDATOR != null) {
         		try {
         			ReceiptValidator g = (ReceiptValidator)Class.forName(StoreConfig.RECEIPT_VALIDATOR).newInstance();
@@ -77,8 +74,6 @@ public class StoreControllerBridge {
         			payload = "";
         			StoreUtils.LogDebug("SOOMLA", "Error generating developer payload");            			
         		}
-        	} else {
-        		payload = "";
         	}
         	
             StoreController.getInstance().buyWithMarket(((PurchaseWithMarket)pvi.getPurchaseType()).getMarketItem(), payload);

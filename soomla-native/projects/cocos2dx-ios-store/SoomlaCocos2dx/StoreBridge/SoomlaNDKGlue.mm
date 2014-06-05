@@ -271,7 +271,7 @@ static NSString* TAG = @"SOOMLA SoomlaNDKGlue";
         [parameters setObject:@"CCEventHandler::onMarketPurchaseStarted" forKey:@"method"];
         [parameters setObject:[pvi itemId] forKey:@"itemId"];
     }
-    else if ([notification.name isEqualToString:EVENT_MARKET_ITEMS_REFRESHED]) {
+    else if ([notification.name isEqualToString:EVENT_MARKET_ITEMS_REFRESH_FINISHED]) {
         NSArray* marketItems = (NSArray*)[notification.userInfo objectForKey:DICT_ELEMENT_MARKET_ITEMS];
         NSMutableArray* jsonArr = [NSMutableArray array];
         NSMutableDictionary *miDict;
