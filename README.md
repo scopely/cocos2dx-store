@@ -15,7 +15,11 @@ Soomla.storeInventory.buyItem("[itemId]");
 
 # cocos2dx-store
 
-**April 8, 2014**: Add new events from native stores.
+**May 30, 2014**: Support Amazon Billing Provider.
+
+**May 29, 2014**: Added prebuilt libs.
+
+**April 8, 2014**: Added new events from native stores.
 
 **February 4, 2014**: Added support for js-bindings.
 
@@ -75,13 +79,15 @@ The example projects are still under development but they already have some impo
     ```cpp
     CCDictionary *storeParams = CCDictionary::create();
     storeParams->
-        setObject(CCString::create("ExampleSoomSecret"), "soomSec");
-    storeParams->
         setObject(CCString::create("ExamplePublicKey"), "androidPublicKey");
     storeParams->
         setObject(CCString::create("ExampleCustomSecret"), "customSecret");
-        
-    soomla::CCStoreController::createShared(YourStoreAssetsImplementation::create(), storeParams);
+
+    CCString *soomSec = CCString::create("ExampleSoomSecret");
+    soomla::CCStoreController::sharedStoreController()->setSoomSec(soomSec);
+
+    // This is the call to initialize CCStoreController
+    soomla::CCStoreController::initShared(assets, storeParams);
     ```
     - *Custom Secret* - is an encryption secret you provide that will be used to secure your data.
     - *Public Key* - is the public key given to you from Google. (iOS doesn't have a public key).
@@ -154,14 +160,20 @@ And that's it! You now have storage and in-app purchasing capabilities.
 
 #### Instructions for iOS
 
-In your XCode project, you'll need to add some folders in order to be able to build with cocos2dx-store:
+In your XCode project, perform following steps:
 
-1. **ios** folder this repo's root.
-2. **Soomla** folder this repo's root.
-3. **SoomlaiOSStore** folder from submodules/ios-store
+1. Add **Soomla** folder of the repository to the project sources.
+2. Add to **Header Search Paths**:
+  - `"$(SRCROOT)/../../../extensions/cocos2dx-store/soomla-native/compilations/ios/headers/cocos2dx-ios-store"`
+  - `"$(SRCROOT)/../../../extensions/cocos2dx-store/soomla-native/compilations/ios/headers/ios-store"`
+3. Add libraries to **Link Binary With Libraries**:
+  - `extensions/cocos2dx-store/soomla-native/compilations/ios/release/libCocos2dXiOSStore.a`
+  - `extensions/cocos2dx-store/soomla-native/compilations/ios/release/libSoomlaiOSStore.a`
 4. _for JS solution only_: put `soomla.js`, `underscore.js` to Copy Bundle Resources section of your XCode project (to the same place, where other cocos2d-x js-files are put) .
 
 * Make sure you have these 3 Frameworks linked to your XCode project: Security, libsqlite3.0.dylib, StoreKit.
+
+
 
 That's it! Now all you have to do is build your XCode project and run your game with cocos2dx-store.
 
@@ -172,15 +184,13 @@ If you're building your application for the Android platform, here are some inst
 1. Import the cocos2dx-store library into your project's Android.mk by adding the following lines in their appropriate places.
     ```
     LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_store_static        # add this line along with your other LOCAL_WHOLE_STATIC_LIBRARIES
-    
+
     $(call import-module, extensions/cocos2dx-store/android/jni) # add this line at the end of the file, along with the other import-module calls
     ```
 
-1. Add the following to your classpath:
-    - **extensions/cocos2dx-store/android/src**
-    - **extensions/cocos2dx-store/submodules/android-store/SoomlaAndroidStore/src**  (the android-store submodule should be there because your cloned cocos2dx-store with the `--recursive` flag).
-    - **extensions/cocos2dx-store/submodules/android-store/SoomlaAndroidStore/submodules/android-store-google-play/src**  (the android-store-google-play submodule should be there because your cloned cocos2dx-store with the `--recursive` flag).
-    - **extensions/cocos2dx-store/submodules/android-store/SoomlaAndroidStore/libs/square-otto-1.3.2.jar**
+1. Add the following jars to your classpath:
+    - **extensions/cocos2dx-store/soomla-native/compilations/android/AndroidStore.jar**
+    - **extensions/cocos2dx-store/soomla-native/compilations/android/Cocos2dxAndroidStore.jar**
 
 1. Update your manifest to include these permissions, SoomlaApp and IabActivity:
 
@@ -263,13 +273,13 @@ Lets say you have a `CCVirtualCurrencyPack` you want to call `TEN_COINS_PACK` an
 #define COIN_CURRENCY_ITEM_ID "coin_currency"
 #define TEN_COIN_PACK_ITEM_ID       "ten_coin_pack"
 #define TEN_COIN_PACK_PRODUCT_ID    "10_coins_pack"  // this is the product id from the developer console
-	
+
 CCVirtualCurrency *COIN_CURRENCY = CCVirtualCurrency::create(
 	CCString::create("COIN_CURRECY"),
 	CCString::create(""),
 	CCString::create(COIN_CURRENCY_ITEM_ID)
 );
-		
+
 CCVirtualCurrencyPack *TEN_COIN_PACK = CCVirtualCurrencyPack::create(
 	CCString::create("10 Coins"),
 	CCString::create("A pack of 10 coins"),
@@ -303,7 +313,7 @@ Lets say you have a `Soomla.Models.VirtualCurrencyPack` you want to call `TEN_CO
   const COIN_CURRENCY_ITEM_ID = "coin_currency";
   const TEN_COIN_PACK_ITEM_ID = "ten_coin_pack";
   const TEN_COIN_PACK_PRODUCT_ID = "10_coins_pack";  // this is the product id from the developer console
-	
+
   var COIN_CURRENCY = Soomla.Models.VirtualCurrency.create({
     name: "COIN_CURRECY",
     description: "",

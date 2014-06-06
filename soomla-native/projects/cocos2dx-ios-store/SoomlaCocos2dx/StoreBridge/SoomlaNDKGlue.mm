@@ -44,11 +44,12 @@ static NSString* TAG = @"SOOMLA SoomlaNDKGlue";
         else if ([methodName isEqualToString:@"CCStoreController::init"]) {
             NSString *customSecret = (NSString *) [parameters objectForKey:@"customSecret"];
 
-	    [[StoreController getInstance] initializeWithStoreAssets:[StoreAssetsBridge sharedInstance]
+	        [[StoreController getInstance] initializeWithStoreAssets:[StoreAssetsBridge sharedInstance]
                                                      andCustomSecret:customSecret];
         }
         else if ([methodName isEqualToString:@"CCStoreController::buyMarketItem"]) {
             NSString *productId = (NSString *) [parameters objectForKey:@"productId"];
+            // NOTE: payload is not supported on iOS !
             StoreControllerBridge::buyMarketItem(productId);
         }
         else if ([methodName isEqualToString:@"CCStoreController::restoreTransactions"]) {
@@ -259,23 +260,28 @@ static NSString* TAG = @"SOOMLA SoomlaNDKGlue";
     }
     else if ([notification.name isEqualToString:EVENT_MARKET_PURCHASED]) {
         PurchasableVirtualItem* pvi = (PurchasableVirtualItem*)[notification.userInfo objectForKey:DICT_ELEMENT_PURCHASABLE];
-        NSString *transactionId = (NSString *)[notification.userInfo objectForKey:DICT_ELEMENT_TRANSACTION_ID];
-        NSURL *url = [notification.userInfo objectForKey:DICT_ELEMENT_RECEIPT];
+        NSString* purchaseToken = [notification.userInfo objectForKey:DICT_ELEMENT_TOKEN];
         [parameters setObject:@"CCEventHandler::onMarketPurchase" forKey:@"method"];
         [parameters setObject:[pvi itemId] forKey:@"itemId"];
-        [parameters setObject:[url absoluteString] forKey:@"receiptUrl"];
-        [parameters setObject:transactionId forKey:@"transactionId"];
+        [parameters setObject:@"[iOS Purchase no payload]" forKey:@"payload"];
+        [parameters setObject:purchaseToken forKey:@"token"];
     }
     else if ([notification.name isEqualToString:EVENT_MARKET_PURCHASE_STARTED]) {
         PurchasableVirtualItem* pvi = (PurchasableVirtualItem*)[notification.userInfo objectForKey:DICT_ELEMENT_PURCHASABLE];
         [parameters setObject:@"CCEventHandler::onMarketPurchaseStarted" forKey:@"method"];
         [parameters setObject:[pvi itemId] forKey:@"itemId"];
     }
-    else if ([notification.name isEqualToString:EVENT_MARKET_ITEMS_REFRESHED]) {
+    else if ([notification.name isEqualToString:EVENT_MARKET_ITEMS_REFRESH_FINISHED]) {
         NSArray* marketItems = (NSArray*)[notification.userInfo objectForKey:DICT_ELEMENT_MARKET_ITEMS];
         NSMutableArray* jsonArr = [NSMutableArray array];
+        NSMutableDictionary *miDict;
         for (MarketItem* mi in marketItems) {
-            [jsonArr addObject:[mi toDictionary]];
+            miDict = [NSMutableDictionary dictionary];
+            [miDict setObject:mi.productId forKey:@"productId"];
+            [miDict setObject:[mi priceWithCurrencySymbol] forKey:@"marketPrice"];
+            [miDict setObject:mi.marketTitle forKey:@"marketTitle"];
+            [miDict setObject:mi.marketDescription forKey:@"marketDesc"];
+            [jsonArr addObject:miDict];
         }
         [parameters setObject:@"CCEventHandler::onMarketItemsRefreshed" forKey:@"method"];
         [parameters setObject: jsonArr forKey:@"marketItems"];
@@ -302,7 +308,7 @@ static NSString* TAG = @"SOOMLA SoomlaNDKGlue";
 	[parameters setObject:@"CCEventHandler::onStoreControllerInitialized" forKey:@"method"];
     }
     else {
-	LogError(TAG, ([NSString stringWithFormat:@"Unknow notification %@", notification.name]));
+	LogError(TAG, ([NSString stringWithFormat:@"Unknown notification %@", notification.name]));
         return;
     }
 

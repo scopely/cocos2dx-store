@@ -10,7 +10,6 @@
 #include <string>
 #import "EventDispatcherBridge.h"
 #import "EventHandling.h"
-#import "CCEventHandler.h"
 #import "VirtualCurrencyPack.h"
 #import "MarketItem.h"
 #import "VirtualGood.h"

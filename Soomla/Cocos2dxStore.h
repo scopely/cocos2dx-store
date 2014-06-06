@@ -1,5 +1,5 @@
-#ifndef _Soomla_H
-#define _Soomla_H
+#ifndef _Cocos2dxSoomla_H
+#define _Cocos2dxSoomla_H
 
 #include "CCEquippableVG.h"
 #include "CCEventHandler.h"
@@ -27,4 +27,4 @@
 #include "CCVirtualGood.h"
 #include "CCVirtualItem.h"
 
-#endif /* !_Soomla_H */
+#endif /* !_Cocos2dxSoomla_H */

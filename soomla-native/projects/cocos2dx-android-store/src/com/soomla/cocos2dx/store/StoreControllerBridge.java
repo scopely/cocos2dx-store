@@ -5,14 +5,13 @@ import com.soomla.store.IStoreAssets;
 import com.soomla.store.StoreConfig;
 import com.soomla.store.StoreController;
 import com.soomla.store.StoreUtils;
+import com.soomla.store.billing.google.GooglePlayIabService;
 import com.soomla.store.data.StoreInfo;
 import com.soomla.store.domain.PurchasableVirtualItem;
 import com.soomla.store.util.ReceiptValidator;
 
 import com.soomla.store.exceptions.VirtualItemNotFoundException;
 import com.soomla.store.purchaseTypes.PurchaseWithMarket;
-
-import com.soomla.store.billing.google.GooglePlayIabService;
 
 /**
  * This bridge is used to let cocos2dx functions perform actions on StoreController (through JNI).
@@ -35,10 +34,11 @@ public class StoreControllerBridge {
 
     public static void initialize(String customSecret) {
         StoreUtils.LogDebug("SOOMLA", "initialize is called from java!");
-        StoreConfig.InAppBillingService = new GooglePlayIabService();
-        
         initializeEventHandler();
-        StoreController.getInstance().initialize(mStoreAssets, mPublicKey, customSecret);
+        StoreController.getInstance().initialize(mStoreAssets, customSecret);
+        if (StoreController.getInstance().getInAppBillingService() instanceof GooglePlayIabService) {
+            ((GooglePlayIabService) StoreController.getInstance().getInAppBillingService()).setPublicKey(mPublicKey);
+        }
     }
 
     public static void initializeEventHandler() {
@@ -60,11 +60,10 @@ public class StoreControllerBridge {
         StoreController.getInstance().stopIabServiceInBg();
     }
 
-    public static void buyWithMarket(String productId) throws VirtualItemNotFoundException {
+    public static void buyWithMarket(String productId, String payload) throws VirtualItemNotFoundException {
         StoreUtils.LogDebug("SOOMLA", "buyWithMarket is called from java with productId: " + productId + "!");
         PurchasableVirtualItem pvi = StoreInfo.getPurchasableItem(productId);
         if(pvi.getPurchaseType() instanceof PurchaseWithMarket) {
-        	String payload;
         	if (StoreConfig.RECEIPT_VALIDATOR != null) {
         		try {
         			ReceiptValidator g = (ReceiptValidator)Class.forName(StoreConfig.RECEIPT_VALIDATOR).newInstance();
@@ -75,8 +74,6 @@ public class StoreControllerBridge {
         			payload = "";
         			StoreUtils.LogDebug("SOOMLA", "Error generating developer payload");            			
         		}
-        	} else {
-        		payload = "";
         	}
         	
             StoreController.getInstance().buyWithMarket(((PurchaseWithMarket)pvi.getPurchaseType()).getMarketItem(), payload);
@@ -87,7 +84,7 @@ public class StoreControllerBridge {
 
     public static void restoreTransactions() {
         StoreUtils.LogDebug("SOOMLA", "restoreTransactions is called from java!");
-        StoreController.getInstance().refreshInventory(false);
+        StoreController.getInstance().restoreTransactions();
     }
 
     public static boolean transactionsAlreadyRestored() {
@@ -119,7 +116,7 @@ public class StoreControllerBridge {
 
     public static void refreshInventory() {
         StoreUtils.LogDebug("SOOMLA", "refreshInventory is called from java!");
-        StoreController.getInstance().refreshInventory(true);
+        StoreController.getInstance().refreshInventory();
     }
 
     private static String TAG = "StoreControllerBridge";

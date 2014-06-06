@@ -10,7 +10,7 @@ namespace soomla {
 
     static CCSoomla *s_SharedSoomla = NULL;
 
-    CCSoomla* CCSoomla::sharedSoomla() {
+    CCSoomla *CCSoomla::sharedSoomla() {
         if (!s_SharedSoomla) {
             s_SharedSoomla = new CCSoomla();
             s_SharedSoomla->init();
@@ -207,13 +207,13 @@ namespace soomla {
                 CCStoreUtils::logException("CCEventHandler::onMarketPurchase", soomlaError);
                 return;
             }
-            CCString *receiptUrl = (CCString *)(parameters->objectForKey("receiptUrl"));
-            CCString *transactionId = (CCString *)(parameters->objectForKey("transactionId"));
             CC_ASSERT(purchasableVirtualItem);
+            CCString *token = (CCString *)(parameters->objectForKey("token"));
+            CCString *payload = (CCString *)(parameters->objectForKey("payload"));
 			CCSetIterator i;
 			for(i = mEventHandlers.begin(); i != mEventHandlers.end(); i++) {
 				CCEventHandler *h = dynamic_cast<CCEventHandler *>(*i);
-                h->onMarketPurchase(purchasableVirtualItem, receiptUrl, transactionId);
+                h->onMarketPurchase(purchasableVirtualItem, token, payload);
 			}
         }
         else if (methodName->compare("CCEventHandler::onMarketPurchaseStarted") == 0) {
@@ -236,7 +236,7 @@ namespace soomla {
             CCArray *marketItems = (CCArray *)(parameters->objectForKey("marketItems"));
 
             CCSoomlaError *soomlaError = NULL;
-            CCDictionary *marketItem;
+            CCDictionary *marketItem = NULL;
             for (unsigned int i = 0; i < marketItems->count(); i++) {
                 marketItem = dynamic_cast<CCDictionary *>(marketItems->objectAtIndex(i));
                 CC_ASSERT(marketItem);
@@ -315,7 +315,7 @@ namespace soomla {
 				CCEventHandler *h = dynamic_cast<CCEventHandler *>(*i);
 				h->onStoreControllerInitialized();
 			}
-		} 
+		}
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         else if (methodName->compare("CCEventHandler::onMarketRefund") == 0) {
             CCString *itemId = (CCString *)(parameters->objectForKey("itemId"));
