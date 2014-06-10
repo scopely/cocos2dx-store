@@ -173,9 +173,9 @@ public class SoomlaNDKGlue {
                     JSONArray retValue = StoreInfoBridge.getVirtualCategories();
                     retParams.put("return", retValue);
                 } else if (methodName.equals("CCStoreController::setSSV")) {
-                } else if (methodName.equals("CCStoreController::setGooglePlayReceiptVerificationClassName")) {
+                } else if (methodName.equals("CCStoreController::setAndroidReceiptVerificationClassName")) {
                 	// TODO check that this is for the right store
-                	String receiptValidatorClass = params.getString("googlePlayReceiptVerificationClass");
+                	String receiptValidatorClass = params.getString("androidReceiptVerificationClass");
                 	StoreControllerBridge.setReceiptValidatorClass(receiptValidatorClass);
                 } else {
                     throw new UnsupportedOperationException(methodName);
