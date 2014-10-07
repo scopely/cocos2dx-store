@@ -163,9 +163,9 @@ namespace soomla {
         }
     }
 
-    void CCStoreEventDispatcher::onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::CCString *token, cocos2d::CCString *payload) {
+    void CCStoreEventDispatcher::onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::CCString *token, cocos2d::CCString *payload, cocos2d::CCString *orderId) {
         FOR_EACH_EVENT_HANDLER(CCStoreEventHandler)
-            eventHandler->onMarketPurchase(purchasableVirtualItem, token, payload);
+            eventHandler->onMarketPurchase(purchasableVirtualItem, token, payload, orderId);
         }
     }
 
@@ -175,9 +175,9 @@ namespace soomla {
         }
     }
 
-    void CCStoreEventDispatcher::onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem) {
+    void CCStoreEventDispatcher::onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::CCString *token, cocos2d::CCString *payload, cocos2d::CCString *orderId) {
         FOR_EACH_EVENT_HANDLER(CCStoreEventHandler)
-            eventHandler->onMarketPurchaseVerification(purchasableVirtualItem);
+            eventHandler->onMarketPurchaseVerification(purchasableVirtualItem, token, payload, orderId);
         }
     }
 
@@ -379,7 +379,9 @@ namespace soomla {
         CC_ASSERT(purchasableVirtualItem);
         CCString *token = (CCString *)(parameters->objectForKey("token"));
         CCString *payload = (CCString *)(parameters->objectForKey("payload"));
-        this->onMarketPurchase(purchasableVirtualItem, token, payload);
+        // on iOS the token is actually the transactionId
+        CCString *orderId = (CCString *)(parameters->objectForKey("token"));
+        this->onMarketPurchase(purchasableVirtualItem, token, payload, orderId);
     }
 
     void CCStoreEventDispatcher::handle__EVENT_MARKET_PURCHASE_STARTED(cocos2d::CCDictionary *parameters) {
@@ -450,7 +452,11 @@ namespace soomla {
             return;
         }
         CC_ASSERT(purchasableVirtualItem);
-        this->onMarketPurchaseVerification(purchasableVirtualItem);
+        CCString *token = (CCString *)(parameters->objectForKey("token"));
+        CCString *payload = (CCString *)(parameters->objectForKey("payload"));
+        // on iOS the token is actually the transactionId
+        CCString *orderId = (CCString *)(parameters->objectForKey("token"));
+        this->onMarketPurchaseVerification(purchasableVirtualItem, token, payload, orderId);
     }
 
     void CCStoreEventDispatcher::handle__EVENT_RESTORE_TRANSACTION_FINISHED(cocos2d::CCDictionary *parameters) {

@@ -237,6 +237,7 @@ public class StoreEventHandlerBridge {
                     parameters.put("itemId", marketPurchaseEvent.getPurchasableVirtualItem().getItemId());
                     parameters.put("payload", marketPurchaseEvent.getPayload());
                     parameters.put("token", marketPurchaseEvent.getToken());
+                    parameters.put("orderId", marketPurchaseEvent.getOrderId());
                     NdkGlue.getInstance().sendMessageWithParameters(parameters);
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);
@@ -254,6 +255,26 @@ public class StoreEventHandlerBridge {
                     JSONObject parameters = new JSONObject();
                     parameters.put("method", "CCStoreEventHandler::onMarketPurchaseStarted");
                     parameters.put("itemId", marketPurchaseStartedEvent.getPurchasableVirtualItem().getItemId());
+                    NdkGlue.getInstance().sendMessageWithParameters(parameters);
+                } catch (JSONException e) {
+                    throw new IllegalStateException(e);
+                }
+            }
+        });
+    }
+    
+    @Subscribe
+    public void onMarketPurchaseVerification(final MarketPurchaseVerificationEvent marketPurchaseVerificationEvent) {
+        mGLThread.queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject parameters = new JSONObject();
+                    parameters.put("method", "CCStoreEventHandler::onMarketPurchaseVerification");
+                    parameters.put("itemId", marketPurchaseVerificationEvent.getPurchasableVirtualItem().getItemId());
+                    parameters.put("payload", marketPurchaseVerificationEvent.getPayload());
+                    parameters.put("token", marketPurchaseVerificationEvent.getToken());
+                    parameters.put("orderId", marketPurchaseVerificationEvent.getOrderId());
                     NdkGlue.getInstance().sendMessageWithParameters(parameters);
                 } catch (JSONException e) {
                     throw new IllegalStateException(e);

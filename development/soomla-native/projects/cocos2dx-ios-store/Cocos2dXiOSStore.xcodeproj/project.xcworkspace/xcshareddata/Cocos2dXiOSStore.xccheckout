@@ -12,7 +12,7 @@
 	<dict>
 		<key>005EC9FD-CD93-4942-AA11-3D9621E8AC4D</key>
 		<string>https://github.com/stammen/angleproject</string>
-		<key>01E95FC6-FAAD-4DD1-AF0D-0C02FC16D21C</key>
+		<key>7F41E3A86218147E742AB88280559E2C4A837E7E</key>
 		<string>ssh://github.com/soomla/cocos2dx-store.git</string>
 		<key>F0A6017F-F867-42D4-8520-BBE767218D80</key>
 		<string>https://github.com/soomla/build-soomla</string>
@@ -23,7 +23,7 @@
 	<dict>
 		<key>005EC9FD-CD93-4942-AA11-3D9621E8AC4D</key>
 		<string>../../../../cocos2d-x/cocos2dx/platform/third_party/winrt/angleproject</string>
-		<key>01E95FC6-FAAD-4DD1-AF0D-0C02FC16D21C</key>
+		<key>7F41E3A86218147E742AB88280559E2C4A837E7E</key>
 		<string>../../../../cocos2dx-store</string>
 		<key>F0A6017F-F867-42D4-8520-BBE767218D80</key>
 		<string>../../..</string>
@@ -31,7 +31,7 @@
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/soomla/build-soomla</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>F0A6017F-F867-42D4-8520-BBE767218D80</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
@@ -56,7 +56,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>01E95FC6-FAAD-4DD1-AF0D-0C02FC16D21C</string>
+			<string>7F41E3A86218147E742AB88280559E2C4A837E7E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>cocos2dx-store</string>
 		</dict>
