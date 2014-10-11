@@ -379,8 +379,14 @@ namespace soomla {
         CC_ASSERT(purchasableVirtualItem);
         CCString *token = (CCString *)(parameters->objectForKey("token"));
         CCString *payload = (CCString *)(parameters->objectForKey("payload"));
+        CCString *orderId;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         // on iOS the token is actually the transactionId
-        CCString *orderId = (CCString *)(parameters->objectForKey("token"));
+        orderId = (CCString *)(parameters->objectForKey("token"));
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        orderId = (CCString *)(parameters->objectForKey("orderId"));
+#endif
         this->onMarketPurchase(purchasableVirtualItem, token, payload, orderId);
     }
 
@@ -454,8 +460,14 @@ namespace soomla {
         CC_ASSERT(purchasableVirtualItem);
         CCString *token = (CCString *)(parameters->objectForKey("token"));
         CCString *payload = (CCString *)(parameters->objectForKey("payload"));
+        CCString *orderId;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         // on iOS the token is actually the transactionId
-        CCString *orderId = (CCString *)(parameters->objectForKey("token"));
+        orderId = (CCString *)(parameters->objectForKey("token"));
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        orderId = (CCString *)(parameters->objectForKey("orderId"));
+#endif
         this->onMarketPurchaseVerification(purchasableVirtualItem, token, payload, orderId);
     }
 
