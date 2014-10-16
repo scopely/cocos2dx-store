@@ -61,7 +61,7 @@ namespace soomla {
 #endif
 
         // Redundancy checking. Most JS libraries don't do this. I hate it when they don't do this. Do this.
-        CCDictElement* el = NULL;
+        DictElement* el = NULL;
         CCDICT_FOREACH(storeParams, el) {
             std::string key = el->getStrKey();
             if (!(

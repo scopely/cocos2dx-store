@@ -2,9 +2,8 @@
 // Created by Fedor Shubin on 5/20/13.
 //
 
+#import "cocos2d.h"
 
-
-#include "cocoa/CCArray.h"
 
 #ifndef __CCIStoreAssets_H_
 #define __CCIStoreAssets_H_
