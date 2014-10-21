@@ -4,6 +4,7 @@
 
 
 #include "CCSoomlaNdkBridgeIos.h"
+#include "cocos2d.h"
 #include "CCSoomlaJsonHelper.h"
 #include "CCSoomla.h"
 #include "SoomlaNDKGlue.h"

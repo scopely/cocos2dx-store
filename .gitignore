@@ -6,3 +6,8 @@ TAGS
 soomla-native/projects/cocos2dx-android-store/bin
 soomla-native/projects/cocos2dx-android-store/gen
 
+android/.classpath
+android/.project
+
+android/bin
+android/gen
