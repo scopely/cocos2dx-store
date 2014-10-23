@@ -67,11 +67,11 @@ namespace soomla {
     }
 
     void CCSoomlaNdkBridgeIos::ndkCallback(json_t *jsonParams) {
-        cocos2d::CCObject *dataToPass = CCSoomlaJsonHelper::getCCObjectFromJson(jsonParams);
+        cocos2d::Ref *dataToPass = CCSoomlaJsonHelper::getRefFromJson(jsonParams);
 #ifdef COCOS2D_JAVASCRIPT
-        Soomla::JSBinding::callCallback((cocos2d::CCDictionary *) dataToPass);
+        Soomla::JSBinding::callCallback((cocos2d::__Dictionary *) dataToPass);
 #else
-        CCSoomla::sharedSoomla()->easyNDKCallBack((cocos2d::CCDictionary *)dataToPass);
+        CCSoomla::sharedSoomla()->easyNDKCallBack((cocos2d::__Dictionary *)dataToPass);
 #endif
     }
 }

@@ -17,14 +17,14 @@ namespace soomla {
 
 		An item you can purchase in the App Store or in Google Play.
 	 */
-    class CCMarketItem : public cocos2d::CCObject {
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString *, mProductId, ProductId, JSON_MARKETITEM_PRODUCT_ID);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCInteger *, mConsumable, Consumable, JSON_MARKETITEM_CONSUMABLE);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCDouble *, mPrice, Price, JSON_MARKETITEM_PRICE);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCDouble *, mMarketPrice, MarketPrice, JSON_MARKETITEM_MARKET_PRICE);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString *, mMarketTitle, MarketTitle, JSON_MARKETITEM_MARKET_TITLE);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString *, mMarketDescription, MarketDescription, JSON_MARKETITEM_MARKET_DESC);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString *, mMarketPriceWithCurrencySymbol, MarketPriceWithCurrencySymbol, JSON_MARKETITEM_MARKET_PRICE_WITH_CURRENCY_SYMBOL);
+    class CCMarketItem : public cocos2d::Ref {
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String *, mProductId, ProductId, JSON_MARKETITEM_PRODUCT_ID);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__Integer *, mConsumable, Consumable, JSON_MARKETITEM_CONSUMABLE);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__Double *, mPrice, Price, JSON_MARKETITEM_PRICE);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__Double *, mMarketPrice, MarketPrice, JSON_MARKETITEM_MARKET_PRICE);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String *, mMarketTitle, MarketTitle, JSON_MARKETITEM_MARKET_TITLE);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String *, mMarketDescription, MarketDescription, JSON_MARKETITEM_MARKET_DESC);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String *, mMarketPriceWithCurrencySymbol, MarketPriceWithCurrencySymbol, JSON_MARKETITEM_MARKET_PRICE_WITH_CURRENCY_SYMBOL);
     public:
         enum Consumable {
             NONCONSUMABLE,
@@ -40,21 +40,21 @@ namespace soomla {
 		   \param price The price of the item, in USD.
 		   \return The item.
 		 */
-        static CCMarketItem *create(cocos2d::CCString *productId, cocos2d::CCInteger *consumable, cocos2d::CCDouble * price);
+        static CCMarketItem *create(cocos2d::__String *productId, cocos2d::__Integer *consumable, cocos2d::__Double * price);
 
 		/**
 		   Create a CCMarketItem from a dictionary.
 		   \param dict A dictionary containing keys for the item's product ID, price and consumable status.
 		   \return The item.
 		*/
-		static CCMarketItem *createWithDictionary(cocos2d::CCDictionary* dict);
+		static CCMarketItem *createWithDictionary(cocos2d::__Dictionary* dict);
 
-        bool init(cocos2d::CCString *productId, cocos2d::CCInteger *consumable, cocos2d::CCDouble * price);
-        virtual bool initWithDictionary(cocos2d::CCDictionary* dict);
+        bool init(cocos2d::__String *productId, cocos2d::__Integer *consumable, cocos2d::__Double * price);
+        virtual bool initWithDictionary(cocos2d::__Dictionary* dict);
 
         virtual ~CCMarketItem();
 
-        virtual cocos2d::CCDictionary* toDictionary();
+        virtual cocos2d::__Dictionary* toDictionary();
     };
 };
 

@@ -8,14 +8,14 @@
 USING_NS_CC;
 
 namespace soomla {
-    CCVirtualGood *CCVirtualGood::create(CCString *name, CCString *description, CCString *itemId, CCPurchaseType *purchaseType) {
+    CCVirtualGood *CCVirtualGood::create(__String *name, __String *description, __String *itemId, CCPurchaseType *purchaseType) {
         CCVirtualGood *ret = new CCVirtualGood();
         ret->autorelease();
         ret->init(name, description, itemId, purchaseType);
         return ret;
     }
 
-    CCVirtualGood *CCVirtualGood::createWithDictionary(CCDictionary *dict) {
+    CCVirtualGood *CCVirtualGood::createWithDictionary(__Dictionary *dict) {
         CCVirtualGood *ret = new CCVirtualGood();
         ret->autorelease();
         ret->initWithDictionary(dict);

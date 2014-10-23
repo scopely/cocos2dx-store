@@ -30,7 +30,7 @@ namespace soomla {
 		CCSoomla::addEventHandler() to work with the events. Functions are
 		called when their corresponding events are fired in the SOOMLA SDK.
 	 */
-    class CCEventHandler : public cocos2d::CCObject {
+    class CCEventHandler : public cocos2d::Ref {
     public:
         virtual void onBillingNotSupported() = 0;
         virtual void onBillingSupported() = 0;
@@ -42,9 +42,9 @@ namespace soomla {
         virtual void onItemPurchased(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
         virtual void onItemPurchaseStarted(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
         virtual void onMarketPurchaseCancelled(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
-        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::CCString *token, cocos2d::CCString *payload) = 0;
+        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload) = 0;
         virtual void onMarketPurchaseStarted(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
-        virtual void onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::CCString *transactionId) = 0;
+        virtual void onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *transactionId) = 0;
         virtual void onRestoreTransactionsFinished(bool success) = 0;
         virtual void onRestoreTransactionsStarted() = 0;
         virtual void onUnexpectedErrorInStore() = 0;

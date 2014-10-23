@@ -41,7 +41,7 @@ JSBool js_constructor(JSContext* cx, uint32_t argc, jsval* vp){
     cocos2d::CCLog("JS Constructor...");
     if (argc == 0) {
         Soomla::JSBinding* cobj = new Soomla::JSBinding();
-        cocos2d::CCObject* ccobj = dynamic_cast<cocos2d::CCObject*>(cobj);
+        cocos2d::Ref* ccobj = dynamic_cast<cocos2d::Ref*>(cobj);
         if (ccobj) {
             ccobj->autorelease();
         }

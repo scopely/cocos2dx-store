@@ -12,7 +12,7 @@ namespace soomla {
     
     using namespace cocos2d;
 
-    CCVirtualItem *CCVirtualItem::create(cocos2d::CCString* name, cocos2d::CCString* description, cocos2d::CCString* itemId) {
+    CCVirtualItem *CCVirtualItem::create(cocos2d::__String* name, cocos2d::__String* description, cocos2d::__String* itemId) {
         CCVirtualItem * pRet = new CCVirtualItem();
         if (pRet) {
             pRet->autorelease();
@@ -21,7 +21,7 @@ namespace soomla {
         return pRet;
     }
 
-    CCVirtualItem *CCVirtualItem::createWithDictionary(cocos2d::CCDictionary* dict) {
+    CCVirtualItem *CCVirtualItem::createWithDictionary(cocos2d::__Dictionary* dict) {
         CCVirtualItem * pRet = new CCVirtualItem();
         if (pRet) {
             pRet->autorelease();
@@ -30,7 +30,7 @@ namespace soomla {
         return pRet;
     }
 
-    bool CCVirtualItem::init(cocos2d::CCString* name, cocos2d::CCString* description, cocos2d::CCString* itemId) {
+    bool CCVirtualItem::init(cocos2d::__String* name, cocos2d::__String* description, cocos2d::__String* itemId) {
         setName(name);
         setDescription(description);
         setItemId(itemId);
@@ -38,7 +38,7 @@ namespace soomla {
         return true;
     }
     
-    bool CCVirtualItem::initWithDictionary(cocos2d::CCDictionary* dict) {
+    bool CCVirtualItem::initWithDictionary(cocos2d::__Dictionary* dict) {
         fillNameFromDict(dict);
         fillDescriptionFromDict(dict);
         fillItemIdFromDict(dict);
@@ -52,8 +52,8 @@ namespace soomla {
         CC_SAFE_RELEASE(mItemId);
     }
     
-    CCDictionary*CCVirtualItem::toDictionary() {
-        CCDictionary* dict = CCDictionary::create();
+    __Dictionary*CCVirtualItem::toDictionary() {
+        __Dictionary* dict = __Dictionary::create();
         putNameToDict(dict);
         putDescriptionToDict(dict);
         putItemIdToDict(dict);

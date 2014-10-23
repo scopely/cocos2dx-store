@@ -24,34 +24,34 @@ void Soomla::JSBinding::callNative(const char *params, std::string &result) {
         return;
     }
 
-    cocos2d::CCObject *dataToPass = CCSoomlaJsonHelper::getCCObjectFromJson(root);
-    CCDictionary *dictToPass = dynamic_cast<CCDictionary *>(dataToPass);
+    cocos2d::Ref *dataToPass = CCSoomlaJsonHelper::getRefFromJson(root);
+    __Dictionary *dictToPass = dynamic_cast<__Dictionary *>(dataToPass);
     CC_ASSERT(dictToPass);
 
     soomla::CCSoomlaError *soomlaError = NULL;
-    CCDictionary *retParams = (CCDictionary *) soomla::CCSoomlaNdkBridge::callNative(dictToPass, &soomlaError);
+    __Dictionary *retParams = (__Dictionary *) soomla::CCSoomlaNdkBridge::callNative(dictToPass, &soomlaError);
 
-    CCDictionary *resultParams = CCDictionary::create();
+    __Dictionary *resultParams = __Dictionary::create();
     if (soomlaError != NULL) {
-        retParams = CCDictionary::create();
-        retParams->setObject(CCInteger::create(soomlaError->getCode()), "code");
-        retParams->setObject(CCString::create(soomlaError->getInfo()), "info");
+        retParams = __Dictionary::create();
+        retParams->setObject(__Integer::create(soomlaError->getCode()), "code");
+        retParams->setObject(__String::create(soomlaError->getInfo()), "info");
 
-        resultParams->setObject(CCBool::create(false), "success");
+        resultParams->setObject(__Bool::create(false), "success");
     } else {
-        resultParams->setObject(CCBool::create(true), "success");
+        resultParams->setObject(__Bool::create(true), "success");
     }
     resultParams->setObject(retParams, "result");
 
-    root = CCSoomlaJsonHelper::getJsonFromCCObject(resultParams);
+    root = CCSoomlaJsonHelper::getJsonFromRef(resultParams);
     char *dump = json_dumps(root, JSON_COMPACT | JSON_ENSURE_ASCII);
     CCLog("callNative: out >> %s", dump);
     result = dump;
     free(dump);
 }
 
-void Soomla::JSBinding::callCallback(CCDictionary *params) {
-    json_t *root = CCSoomlaJsonHelper::getJsonFromCCObject(params);
+void Soomla::JSBinding::callCallback(__Dictionary *params) {
+    json_t *root = CCSoomlaJsonHelper::getJsonFromRef(params);
     char *dump = json_dumps(root, JSON_COMPACT | JSON_ENSURE_ASCII);
     CCLog("callCallback: in >> %s", dump);
 

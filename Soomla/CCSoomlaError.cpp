@@ -12,10 +12,10 @@ namespace soomla {
 
     #define TAG "CCSoomlaError"
 
-    CCSoomlaError *CCSoomlaError::createWithObject(cocos2d::CCObject *obj) {
-        CCDictionary *dict = dynamic_cast<CCDictionary *>(obj);
+    CCSoomlaError *CCSoomlaError::createWithObject(cocos2d::Ref *obj) {
+        __Dictionary *dict = dynamic_cast<__Dictionary *>(obj);
         if (dict != NULL && dict->objectForKey(JSON_ERROR_CODE) != NULL) {
-            CCInteger *errorCode = dynamic_cast<CCInteger *>(dict->objectForKey(JSON_ERROR_CODE));
+            __Integer *errorCode = dynamic_cast<__Integer *>(dict->objectForKey(JSON_ERROR_CODE));
             CC_ASSERT(errorCode);
 
             CCSoomlaError *ret = new CCSoomlaError();
@@ -52,19 +52,19 @@ namespace soomla {
         mCode = code;
 
         if (code == SOOMLA_EXCEPTION_ITEM_NOT_FOUND) {
-            CCLog("%s %s", TAG, "SOOMLA/COCOS2DX Got VirtualItemNotFoundException exception");
+            log("%s %s", TAG, "SOOMLA/COCOS2DX Got VirtualItemNotFoundException exception");
             mInfo = "VirtualItemNotFoundException()";
         }
         else if (code == SOOMLA_EXCEPTION_INSUFFICIENT_FUNDS) {
-            CCLog("%s %s", TAG, "SOOMLA/COCOS2DX Got InsufficientFundsException exception");
+            log("%s %s", TAG, "SOOMLA/COCOS2DX Got InsufficientFundsException exception");
             mInfo = "InsufficientFundsException()";
         }
         else if (code == SOOMLA_EXCEPTION_NOT_ENOUGH_GOODS) {
-            CCLog("%s %s", TAG, "SOOMLA/COCOS2DX Got NotEnoughGoodsException exception");
+            log("%s %s", TAG, "SOOMLA/COCOS2DX Got NotEnoughGoodsException exception");
             mInfo = "NotEnoughGoodsException()";
         }
         else if (code == SOOMLA_EXCEPTION_OTHER) {
-            CCLog("%s %s", TAG, "SOOMLA/COCOS2DX Got Unknown exception");
+            log("%s %s", TAG, "SOOMLA/COCOS2DX Got Unknown exception");
             mInfo = "unknown";
         } else {
             CC_ASSERT(false);

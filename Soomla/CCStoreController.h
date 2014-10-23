@@ -16,8 +16,8 @@ namespace soomla {
 		An interface to the native StoreController class, use this class to
 		access the native StoreController functionality.
 	 */
-    class CCStoreController: public cocos2d::CCObject {
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCString *, mSoomSec, SoomSec);
+    class CCStoreController: public cocos2d::Ref {
+        CC_SYNTHESIZE_RETAIN(cocos2d::__String *, mSoomSec, SoomSec);
     public:
 		/**
 		   This class is singleton, use this function to access it.
@@ -28,18 +28,18 @@ namespace soomla {
 		   Initialize StoreController on native side and allow using its
 		   functions.
            \param storeAssets An instance of your store's assets class.
-           \param storeParams A CCDictionary containing parameters for CCStoreController (These were previously found in CCSoomla).
+           \param storeParams A __Dictionary containing parameters for CCStoreController (These were previously found in CCSoomla).
              This dictionary can contain the following:
-             "soomSec": CCString - The value of the primary encryption key.
-             "customSecret": CCString - The value of the secondary encryption key.
-             "androidPublicKey": CCString - Your Android public key.
-             "SSV": CCBool - Whether or not to enable server side verification of purchases.
+             "soomSec": __String - The value of the primary encryption key.
+             "customSecret": __String - The value of the secondary encryption key.
+             "androidPublicKey": __String - Your Android public key.
+             "SSV": __Bool - Whether or not to enable server side verification of purchases.
 		 */
-        static void initShared(CCIStoreAssets *storeAssets, cocos2d::CCDictionary *storeParams);
+        static void initShared(CCIStoreAssets *storeAssets, cocos2d::__Dictionary *storeParams);
 
         CCStoreController(void);
         virtual ~CCStoreController(void);
-        virtual bool init(CCIStoreAssets *storeAssets, cocos2d::CCDictionary *storeParams);
+        virtual bool init(CCIStoreAssets *storeAssets, cocos2d::__Dictionary *storeParams);
 
         virtual void setupSoomSec();
 
@@ -65,13 +65,13 @@ namespace soomla {
         bool transactionsAlreadyRestored();
         void refreshMarketItemsDetails(CCSoomlaError **soomlaError);
         
-        void setCustomReceiptVerificationClassName(cocos2d::CCString *className);
+        void setCustomReceiptVerificationClassName(cocos2d::__String *className);
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		void startIabServiceInBg();
 		void stopIabServiceInBg();
-		void setAndroidReceiptVerificationClassName(cocos2d::CCString *payloadGeneratorClass);
+		void setAndroidReceiptVerificationClassName(cocos2d::__String *payloadGeneratorClass);
 #endif
     };
 };

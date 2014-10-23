@@ -8,21 +8,21 @@
 USING_NS_CC;
 
 namespace soomla {
-    CCVirtualCurrencyPack *CCVirtualCurrencyPack::create(CCString *name, CCString *description, CCString *itemId, CCInteger *currencyAmount, CCString *currencyItemId, CCPurchaseType *purchaseType) {
+    CCVirtualCurrencyPack *CCVirtualCurrencyPack::create(__String *name, __String *description, __String *itemId, __Integer *currencyAmount, __String *currencyItemId, CCPurchaseType *purchaseType) {
         CCVirtualCurrencyPack *ret = new CCVirtualCurrencyPack();
         ret->autorelease();
         ret->init(name, description, itemId, currencyAmount, currencyItemId, purchaseType);
         return ret;
     }
 
-    CCVirtualCurrencyPack *CCVirtualCurrencyPack::createWithDictionary(CCDictionary *dict) {
+    CCVirtualCurrencyPack *CCVirtualCurrencyPack::createWithDictionary(__Dictionary *dict) {
         CCVirtualCurrencyPack *ret = new CCVirtualCurrencyPack();
         ret->autorelease();
         ret->initWithDictionary(dict);
         return ret;
     }
 
-    bool CCVirtualCurrencyPack::init(CCString *name, CCString *description, CCString *itemId, CCInteger *currencyAmount, CCString *currencyItemId, CCPurchaseType *purchaseType) {
+    bool CCVirtualCurrencyPack::init(__String *name, __String *description, __String *itemId, __Integer *currencyAmount, __String *currencyItemId, CCPurchaseType *purchaseType) {
         bool res = CCPurchasableVirtualItem::init(name, description, itemId, purchaseType);
         if (res) {
             setCurrencyAmount(currencyAmount);
@@ -33,7 +33,7 @@ namespace soomla {
         }
     }
 
-    bool CCVirtualCurrencyPack::initWithDictionary(CCDictionary *dict) {
+    bool CCVirtualCurrencyPack::initWithDictionary(__Dictionary *dict) {
         bool res = CCPurchasableVirtualItem::initWithDictionary(dict);
         if (res) {
             fillCurrencyAmountFromDict(dict);
@@ -45,8 +45,8 @@ namespace soomla {
         }
     }
 
-    CCDictionary *CCVirtualCurrencyPack::toDictionary() {
-        CCDictionary *dict = CCPurchasableVirtualItem::toDictionary();
+    __Dictionary *CCVirtualCurrencyPack::toDictionary() {
+        __Dictionary *dict = CCPurchasableVirtualItem::toDictionary();
 
         putCurrencyAmountToDict(dict);
         putCurrencyItemIdToDict(dict);

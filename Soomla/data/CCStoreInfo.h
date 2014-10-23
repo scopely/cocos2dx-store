@@ -20,7 +20,7 @@ namespace soomla {
 		An interface to the native StoreInfo class, use this class to
 		access the native StoreInfo functionality.
 	*/
-	class CCStoreInfo: cocos2d::CCObject {
+	class CCStoreInfo: cocos2d::Ref {
     public:
 		/**
 		   This class is singleton, use this function to access it.
@@ -70,41 +70,41 @@ namespace soomla {
 		/**
 		   Get all upgrades of a good
 		   \param itemId The itemId of the good.
-		   \return The uprades in a CCArray.
+		   \return The uprades in a __Array.
 		*/
-        cocos2d::CCArray *getUpgradesForVirtualGood(const char *goodItemId);
+        cocos2d::__Array *getUpgradesForVirtualGood(const char *goodItemId);
 
 		/**
 		   Get all virtual currencies.
-		   \return The virtual currencies in a CCArray.
+		   \return The virtual currencies in a __Array.
 		*/
-		cocos2d::CCArray *getVirtualCurrencies();
+		cocos2d::__Array *getVirtualCurrencies();
 
 		/**
 		   Get all virtual goods.
-		   \return The virtual goods in a CCArray.
+		   \return The virtual goods in a __Array.
 		*/
-        cocos2d::CCArray *getVirtualGoods();
+        cocos2d::__Array *getVirtualGoods();
 
 		/**
 		   Get all virtual currency packs.
-		   \return The virtual currency packs in a CCArray.
+		   \return The virtual currency packs in a __Array.
 		*/
-        cocos2d::CCArray *getVirtualCurrencyPacks();
+        cocos2d::__Array *getVirtualCurrencyPacks();
 
 		/**
 		   Get all non consumable items.
-		   \return The non consumable items in a CCArray.
+		   \return The non consumable items in a __Array.
 		*/
-        cocos2d::CCArray *getNonConsumableItems();
+        cocos2d::__Array *getNonConsumableItems();
 
 		/**
 		   Get all virtual categories.
-		   \return The virtual categories in a CCArray.
+		   \return The virtual categories in a __Array.
 		*/
-		cocos2d::CCArray *getVirtualCategories();
+		cocos2d::__Array *getVirtualCategories();
     private:
-        cocos2d::CCObject *createWithRetParams(cocos2d::CCDictionary *retParams);
+        cocos2d::Ref *createWithRetParams(cocos2d::__Dictionary *retParams);
     };
 };
 

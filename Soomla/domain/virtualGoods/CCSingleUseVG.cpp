@@ -7,14 +7,14 @@
 
 namespace soomla {
     USING_NS_CC;
-    CCSingleUseVG *CCSingleUseVG::create(CCString *name, CCString *description, CCString *itemId, CCPurchaseType *purchaseType) {
+    CCSingleUseVG *CCSingleUseVG::create(__String *name, __String *description, __String *itemId, CCPurchaseType *purchaseType) {
         CCSingleUseVG *ret = new CCSingleUseVG();
         ret->autorelease();
         ret->init(name, description, itemId, purchaseType);
         return ret;
     }
 
-    CCSingleUseVG *CCSingleUseVG::createWithDictionary(CCDictionary *dict) {
+    CCSingleUseVG *CCSingleUseVG::createWithDictionary(__Dictionary *dict) {
         CCSingleUseVG *ret = new CCSingleUseVG();
         ret->autorelease();
         ret->initWithDictionary(dict);
