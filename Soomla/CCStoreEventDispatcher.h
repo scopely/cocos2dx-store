@@ -35,11 +35,11 @@ namespace soomla {
 
         virtual void onMarketPurchaseCancelled(CCPurchasableVirtualItem *purchasableVirtualItem);
 
-        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload);
+        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload, cocos2d::__String *orderId);
 
         virtual void onMarketPurchaseStarted(CCPurchasableVirtualItem *purchasableVirtualItem);
 
-        virtual void onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem);
+        virtual void onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload, cocos2d::__String *orderId);
 
         virtual void onRestoreTransactionsFinished(bool success);
 

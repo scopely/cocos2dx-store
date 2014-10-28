@@ -115,7 +115,7 @@ namespace soomla {
         @param purchasableVirtualItem The market item being purchased.
         @param receiptUrl Receipt URL from the store.
         */
-        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload) = 0;
+        virtual void onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload, cocos2d::__String *orderId) = 0;
 
         /**
         Handles an `onMarketPurchaseStarted` event, which is fired when a
@@ -132,7 +132,7 @@ namespace soomla {
          @param purchasableVirtualItem The market item whose purchase is being 
                 verified.
          */
-        virtual void onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem) = 0;
+        virtual void onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload, cocos2d::__String *orderId) = 0;
         
         /**
          Handles an `onRestoreTransactionsFinished` event, which is fired when a

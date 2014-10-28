@@ -183,7 +183,15 @@ namespace soomla {
                     __String *token = (__String *)(parameters->objectForKey("token"));
                     __String *payload = (__String *)(parameters->objectForKey("payload"));
                     __SetIterator i;
-                    this->onMarketPurchase(purchasableVirtualItem, token, payload);
+                    __String *orderId;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+                        // on iOS the token is actually the transactionId
+                        orderId = (__String *)(parameters->objectForKey("token"));
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+                        orderId = (__String *)(parameters->objectForKey("orderId"));
+#endif
+                    this->onMarketPurchase(purchasableVirtualItem, token, payload, orderId);
                 });
 
         eventDispatcher->registerEventHandler(CCStoreConsts::EVENT_MARKET_PURCHASE_STARTED,
@@ -271,7 +279,18 @@ namespace soomla {
                         return;
                     }
                     CC_ASSERT(purchasableVirtualItem);
-                    this->onMarketPurchaseVerification(purchasableVirtualItem);
+                    __String *token = (__String *)(parameters->objectForKey("token"));
+                    __String *payload = (__String *)(parameters->objectForKey("payload"));
+                    __SetIterator i;
+                    __String *orderId;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+                    // on iOS the token is actually the transactionId
+                    orderId = (__String *)(parameters->objectForKey("token"));
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+                    orderId = (__String *)(parameters->objectForKey("orderId"));
+#endif
+                    this->onMarketPurchaseVerification(purchasableVirtualItem, token, payload, orderId);
                });
 
         eventDispatcher->registerEventHandler(CCStoreConsts::EVENT_RESTORE_TRANSACTION_FINISHED,
@@ -383,9 +402,9 @@ namespace soomla {
         }
     }
 
-    void CCStoreEventDispatcher::onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload) {
+    void CCStoreEventDispatcher::onMarketPurchase(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload, cocos2d::__String *orderId) {
         FOR_EACH_EVENT_HANDLER(CCStoreEventHandler)
-            eventHandler->onMarketPurchase(purchasableVirtualItem, token, payload);
+            eventHandler->onMarketPurchase(purchasableVirtualItem, token, payload, orderId);
         }
     }
 
@@ -395,9 +414,9 @@ namespace soomla {
         }
     }
 
-    void CCStoreEventDispatcher::onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem) {
+    void CCStoreEventDispatcher::onMarketPurchaseVerification(CCPurchasableVirtualItem *purchasableVirtualItem, cocos2d::__String *token, cocos2d::__String *payload, cocos2d::__String *orderId) {
         FOR_EACH_EVENT_HANDLER(CCStoreEventHandler)
-            eventHandler->onMarketPurchaseVerification(purchasableVirtualItem);
+            eventHandler->onMarketPurchaseVerification(purchasableVirtualItem, token, payload, orderId);
         }
     }
 
