@@ -388,6 +388,17 @@
         NSMutableArray* jsonArr = [NSMutableArray array];
         NSMutableDictionary *miDict;
         for (MarketItem* mi in marketItems) {
+            if (!mi.productId)
+                mi.productId = @"";
+            if (!mi.marketPriceAndCurrency)
+                mi.marketPriceAndCurrency = @"";
+            if (!mi.marketTitle)
+                mi.marketTitle = @"";
+            if (!mi.marketDescription)
+                mi.marketDescription = @"";
+            if (!mi.marketCurrencyCode)
+                mi.marketCurrencyCode = @"";
+    
             miDict = [NSMutableDictionary dictionary];
             [miDict setObject:mi.productId forKey:@"productId"];
             [miDict setObject:mi.marketPriceAndCurrency forKey:@"marketPrice"];
