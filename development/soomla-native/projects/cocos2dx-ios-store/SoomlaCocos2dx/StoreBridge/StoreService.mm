@@ -389,15 +389,15 @@
         NSMutableDictionary *miDict;
         for (MarketItem* mi in marketItems) {
             if (!mi.productId)
-                mi.productId = @"Error: productId cannot be nil!";
+                mi.productId = @"";
             if (!mi.marketPriceAndCurrency)
-                mi.marketPriceAndCurrency = @"Error: marketPrice cannot be nil!";
+                mi.marketPriceAndCurrency = @"";
             if (!mi.marketTitle)
-                mi.marketTitle = @"Error: marketTitle cannot be nil!";
+                mi.marketTitle = @"";
             if (!mi.marketDescription)
-                mi.marketDescription = @"Error: marketDesc cannot be nil!";
+                mi.marketDescription = @"";
             if (!mi.marketCurrencyCode)
-                mi.marketCurrencyCode = @"Error: marketCurrencyCode cannot be nil!";
+                mi.marketCurrencyCode = @"";
     
             miDict = [NSMutableDictionary dictionary];
             [miDict setObject:mi.productId forKey:@"productId"];
