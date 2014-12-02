@@ -19,7 +19,7 @@ STORE_SRC_LIST += $(wildcard $(LOCAL_PATH)/Soomla/domain/virtualCurrencies/*.cpp
 STORE_SRC_LIST += $(wildcard $(LOCAL_PATH)/Soomla/domain/virtualGoods/*.cpp)
 STORE_SRC_LIST += $(wildcard $(LOCAL_PATH)/Soomla/rewards/*.cpp)
 
-LOCAL_SRC_FILES := $(STORE_SRC_LIST)
+LOCAL_SRC_FILES := $(STORE_SRC_LIST:$(LOCAL_PATH)/%=%)
 
 
 ifneq '$(COCOS2D_JAVASCRIPT)' ''
