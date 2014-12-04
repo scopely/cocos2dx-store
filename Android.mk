@@ -38,6 +38,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/Soomla/PurchaseTypes
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/Soomla/rewards
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../lib \
         $(LOCAL_PATH)/../../../bindings/manual
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos
 
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_soomla_common_static
