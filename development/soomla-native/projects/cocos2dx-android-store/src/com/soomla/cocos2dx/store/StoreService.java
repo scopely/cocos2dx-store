@@ -27,7 +27,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
 public class StoreService extends AbstractSoomlaService {
 
     private static StoreService INSTANCE = null;
@@ -394,9 +393,15 @@ public class StoreService extends AbstractSoomlaService {
         ndkGlue.registerCallHandler("CCStoreInfo::saveItem", new NdkGlue.CallHandler() {
             @Override
             public void handle(JSONObject params, JSONObject retParams) throws Exception {
-
                 JSONObject viJsonObject = params.getJSONObject("virtualItem");
                 StoreInfo.save(DomainFactory.getInstance().<VirtualItem>createWithJsonObject(viJsonObject));
+            }
+        });
+        
+        ndkGlue.registerCallHandler("CCStoreInfo::flush", new NdkGlue.CallHandler() {
+            @Override
+            public void handle(JSONObject params, JSONObject retParams) throws Exception {
+                StoreInfo.save();
             }
         });
 
