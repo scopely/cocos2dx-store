@@ -137,6 +137,8 @@ namespace soomla {
 		cocos2d::__Array *getVirtualCategories();
 
         void saveItem(CCVirtualItem *virtualItem);
+        
+        void flush();
     private:
         cocos2d::Ref *createWithRetParams(cocos2d::__Dictionary *retParams);
     };

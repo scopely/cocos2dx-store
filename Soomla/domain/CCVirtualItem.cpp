@@ -30,4 +30,10 @@ namespace soomla {
     void soomla::CCVirtualItem::save() {
         CCStoreInfo::sharedStoreInfo()->saveItem(this);
     }
+    
+    void soomla::CCVirtualItem::flush() {
+        #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        CCStoreInfo::sharedStoreInfo()->flush();
+        #endif
+    }
 }

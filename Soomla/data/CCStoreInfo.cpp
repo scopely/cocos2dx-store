@@ -244,4 +244,10 @@ namespace soomla {
         CCNdkBridge::callNative (params, NULL);
     }
 
+    void CCStoreInfo::flush() {
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCStoreInfo::save"), "method");
+        CCNdkBridge::callNative (params, NULL);
+    }
+    
 }

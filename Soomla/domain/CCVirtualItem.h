@@ -41,6 +41,9 @@ namespace soomla {
         cocos2d::__String *getItemId();
 
         virtual void save();
+
+        static void flush();
+
     };
     
 }
