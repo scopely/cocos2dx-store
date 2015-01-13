@@ -227,6 +227,7 @@ namespace soomla {
                     __Array *marketItemDicts = (__Array *)(parameters->objectForKey("marketItems"));
                     __Array *marketItems = __Array::create();
 
+
                     CCError *error = NULL;
                     __Dictionary *marketItem = NULL;
                     for (unsigned int i = 0; i < marketItemDicts->count(); i++) {
@@ -259,6 +260,8 @@ namespace soomla {
 
                         marketItems->addObject(purchaseWithMarket);
                     }
+                    
+                    CCVirtualItem::flush();
 
                     this->onMarketItemsRefreshed(marketItems);
                 });
