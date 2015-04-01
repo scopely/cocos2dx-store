@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DAA2DBB1ACC5F9500966099 /* libCocos2dXiOSStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAA2DBA1ACC5F9500966099 /* libCocos2dXiOSStore.a */; };
+		2DAA2DC31ACC6D8B00966099 /* libSoomlaiOSStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAA2DC21ACC6D8B00966099 /* libSoomlaiOSStore.a */; };
 		9D63D1FF19B1C4FF0054EA87 /* CCSimpleStoreEventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D63D1C119B1C4FF0054EA87 /* CCSimpleStoreEventHandler.cpp */; };
 		9D63D20019B1C4FF0054EA87 /* CCSimpleStoreEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D63D1C219B1C4FF0054EA87 /* CCSimpleStoreEventHandler.h */; };
 		9D63D20119B1C4FF0054EA87 /* CCSoomlaStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D63D1C319B1C4FF0054EA87 /* CCSoomlaStore.cpp */; };
@@ -60,12 +62,12 @@
 		9D63D23319B1C4FF0054EA87 /* CCPurchaseWithVirtualItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D63D1FB19B1C4FF0054EA87 /* CCPurchaseWithVirtualItem.h */; };
 		9D63D23419B1C4FF0054EA87 /* CCVirtualItemReward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D63D1FD19B1C4FF0054EA87 /* CCVirtualItemReward.cpp */; };
 		9D63D23519B1C4FF0054EA87 /* CCVirtualItemReward.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D63D1FE19B1C4FF0054EA87 /* CCVirtualItemReward.h */; };
-		9D63D23819B1C56E0054EA87 /* libCocos2dXiOSStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D63D23619B1C56E0054EA87 /* libCocos2dXiOSStore.a */; };
-		9D63D23919B1C56E0054EA87 /* libSoomlaiOSStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D63D23719B1C56E0054EA87 /* libSoomlaiOSStore.a */; };
 		C0B3C5F3168C6D0C00161FAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B3C5F2168C6D0C00161FAA /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DAA2DBA1ACC5F9500966099 /* libCocos2dXiOSStore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocos2dXiOSStore.a; path = build/ios/libCocos2dXiOSStore.a; sourceTree = "<group>"; };
+		2DAA2DC21ACC6D8B00966099 /* libSoomlaiOSStore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSoomlaiOSStore.a; path = build/ios/libSoomlaiOSStore.a; sourceTree = "<group>"; };
 		9D63D1C119B1C4FF0054EA87 /* CCSimpleStoreEventHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSimpleStoreEventHandler.cpp; sourceTree = "<group>"; };
 		9D63D1C219B1C4FF0054EA87 /* CCSimpleStoreEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSimpleStoreEventHandler.h; sourceTree = "<group>"; };
 		9D63D1C319B1C4FF0054EA87 /* CCSoomlaStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSoomlaStore.cpp; sourceTree = "<group>"; };
@@ -119,8 +121,6 @@
 		9D63D1FB19B1C4FF0054EA87 /* CCPurchaseWithVirtualItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPurchaseWithVirtualItem.h; sourceTree = "<group>"; };
 		9D63D1FD19B1C4FF0054EA87 /* CCVirtualItemReward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCVirtualItemReward.cpp; sourceTree = "<group>"; };
 		9D63D1FE19B1C4FF0054EA87 /* CCVirtualItemReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVirtualItemReward.h; sourceTree = "<group>"; };
-		9D63D23619B1C56E0054EA87 /* libCocos2dXiOSStore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocos2dXiOSStore.a; path = build/ios/libCocos2dXiOSStore.a; sourceTree = "<group>"; };
-		9D63D23719B1C56E0054EA87 /* libSoomlaiOSStore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSoomlaiOSStore.a; path = build/ios/libSoomlaiOSStore.a; sourceTree = "<group>"; };
 		C0B3C5EF168C6D0C00161FAA /* libCocos2dXStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCocos2dXStore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B3C5F2168C6D0C00161FAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -130,8 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D63D23819B1C56E0054EA87 /* libCocos2dXiOSStore.a in Frameworks */,
-				9D63D23919B1C56E0054EA87 /* libSoomlaiOSStore.a in Frameworks */,
+				2DAA2DC31ACC6D8B00966099 /* libSoomlaiOSStore.a in Frameworks */,
+				2DAA2DBB1ACC5F9500966099 /* libCocos2dXiOSStore.a in Frameworks */,
 				C0B3C5F3168C6D0C00161FAA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,8 +275,8 @@
 		C0B3C5F1168C6D0C00161FAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9D63D23619B1C56E0054EA87 /* libCocos2dXiOSStore.a */,
-				9D63D23719B1C56E0054EA87 /* libSoomlaiOSStore.a */,
+				2DAA2DBA1ACC5F9500966099 /* libCocos2dXiOSStore.a */,
+				2DAA2DC21ACC6D8B00966099 /* libSoomlaiOSStore.a */,
 				C0B3C5F2168C6D0C00161FAA /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -460,6 +460,7 @@
 					"$(inherited)",
 					"COCOS2D_DEBUG=1",
 					CC_TARGET_OS_IPHONE,
+					"SOOMLA_DEBUG=1",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -474,7 +475,10 @@
 					"$(SRCROOT)/../soomla-cocos2dx-core/build/ios/headers/**",
 					"$(SRCROOT)/../soomla-cocos2dx-core/Soomla/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build/ios";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/build/ios",
+					"$(PROJECT_DIR)/development/soomla-native/projects/cocos2dx-ios-store/out/Debug-universal",
+				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -507,7 +511,10 @@
 					"$(SRCROOT)/../soomla-cocos2dx-core/build/ios/headers/**",
 					"$(SRCROOT)/../soomla-cocos2dx-core/Soomla/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build/ios";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/build/ios",
+					"$(PROJECT_DIR)/development/soomla-native/projects/cocos2dx-ios-store/out/Debug-universal",
+				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
